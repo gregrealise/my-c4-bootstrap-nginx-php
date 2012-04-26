@@ -1,60 +1,62 @@
 #c4-bootstrap-nginx-php
 
-A simple way to deploy a NGINX + PHP5-FPM environment and save your code with version control, using c4-bootstrap lightweight system management tools.
+## Summary
 
-##Requirements
+This project provides a simple way to deploy a NGINX + PHP5-FPM environment and save your code with version control. It uses the c4-bootstrap lightweight system management tools.
 
-You'll need to install:
+## System Requirements
+
+You will need to install:
 
     git-core
 
-You can do this with:
+To do so, run:
 
     apt-get update
     apt-get install git-core
 
-These should be standard:
+These standard toolkits should also be present on the system:
 
     bash
     tar
     gzip
 
+## How To: Bootstrap
 
-##HOWTO bootstrap
+Bootstrapping your server will install the requested environment on your system.
 
-bootstraping your server will install the requested environment on your sysetm.
+Fire up your Ubuntu server or Ubuntu AMI EC2 instance. These scripts are designed to work on Ubuntu 10.04 LTS. Please see c4-bootstrap documentation for further information on compatibility and the deployment framework in general.
 
-Fire up your Ubuntu server or EC2 instance. These scripts are designed to work on Ubuntu 10.04 LTS!!!!
-
-Now fork this git repo and clone onto your new server:
+To get started, fork this git repo and clone it onto the fresh server:
 
     First click the fork button on the this github page
-    You'll need a github account to do this
+    // You'll need a github account to do this
+    // We recommend you have a paid account to keep your code private.
+    
+Optional: You can rename your fork to represent the project you are working on. If you do you will have to change the lines below to reflect your new repo name.
 
-We recomend you have a paid account so you can keep your code private.
-
-You can also rename your fork to represent the project you are working on. If you do you'll have to slightly change the lines below to match your repo name.
-
-On your new server:
+On the server CLI:
 
     git clone https://github.com/*<USERNAME>*/c4-bootstrap-nginx-php.git
     cd c4-bootstrap-nginx-php
     sudo ./bootstrap.sh
 
-You'll see lots of text fly past the screen as the system is setup. Once complete it should be fully up and running.
+There should be considerable output on screen. Once the script has finished, the system should be fully up and running.
 
-If you have never run repack.sh before, when you browse to your URL/IP you'll see an 403 access denied error in the browser. If you've been using repack.sh to track your changes in github then your site will be fully restored and running when you browse to your URL/IP.
+If you have never run repack.sh before (see c4-bootstap documentation), when you browse to your URL/IP you will see a 403 access denied error browser side. 
 
-##HOWTO repack
+If you have been using repack.sh to track your changes in github then your site will be fully restored and running when you browse to your URL/IP.
 
-While developing your site the contents of the site may change frequently. repack.sh is designed to help you track those changes in github and all you to rebuild the server to a given point in time. Its good practice to use repack.sh regularly to avoid loss of work.
+## How To: Repack (repack.sh)
 
-Simply run these commands (remember if you've renamed your rep change these commands):
+While developing your site the contents of the site may change frequently. repack.sh is designed to help track these changes in github. This will allow a rebuild of the server to a given point in time. It is good practice to use repack.sh regularly to avoid loss of work, especially if you frequently add content to your site.
+
+Simply run these commands (remember to reflect the repository name if changed from default):
 
     cd c4-bootstrap-nginx-php
     sudo ./repack.sh
 
-This will create a SiteContent.tgz of your site and push them back to your github repo. It can be used to back up your site or even redeploy your site on a new server using the bootstrap.sh script. I recommend you back up regularly if you frequently add content to your site.
+This will create a SiteContent.tgz of your site and push it back to your github repo. It can be used to back up the site or re-deploy it to a new server using the bootstrap.sh script. 
 
 c4-bootstrap-nginx-php is set up to monitor the following directories:
 
@@ -64,10 +66,10 @@ c4-bootstrap-nginx-php is set up to monitor the following directories:
 
 Changes in these directories will be pulled back into your git repo when running repack. To add more locations just edit the __scripts/repack/working_dirs__ file.
 
-NB : You should set your github repo to private to avoid exposing your private code and configs to everyone!
+NB : A private github repo should be used to avoid exposing your code and configs to everyone!
 
-##More info
+## More info
 
-For more info on c4-bootstrap please refer to:
+For more info on the c4-bootstrap project; please refer to:
 
 [https://github.com/channel4/c4-bootstrap/blob/master/README.md](https://github.com/channel4/c4-bootstrap/blob/master/README.md "c4-bootstrap README")
