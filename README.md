@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-#c4-bootstrap-php
-=======
 #c4-bootstrap-nginx-php
->>>>>>> 1b48bfb17d699ad61cf230cd2ddd96ae6c0e0a64
 
 ## Summary
 
@@ -11,145 +6,7 @@ This project provides a simple way to deploy a NGINX + PHP5-FPM environment and 
 
 ## System Requirements
 
-<<<<<<< HEAD
-* Install git so you can clone the repository:
-
-```bash
-sudo apt-get update
-sudo apt-get install git-core
-```
-
-* Clone the c4-bootstrap-php repo onto your server:
-
-```bash
-git clone https://github.com/channel4/c4-bootstrap-php.git
-```
-
-* Now run the bootstrap script to set up the environment:
-
-```bash
-cd c4-bootstrap-php
-sudo ./bootstrap.sh
-```
-
-* Now you can make changes to the system by following the working directories and scripting guides.
-
-##HOWTO c4-repack
-
-When your ready to commit your code to the channel4 git repo so you can either submit code to ISHosting or rebuild your server on another machine, first contact your project manager to start a conversation about getting a private github repo from us. This requires you having a github account and have your public SSH keys loaded into github and the private key on your test system in **~/.ssh/**. We'll then create a private repo for you and send you the details.
-
-Change your repo details to the one supplied by Channel 4 Operations:
-
-```bash
-cd ~/c4-bootstrap-php
-git config --global user.name "Firstname Lastname"
-git config --global user.email "your_email@youremail.com"
-```
-You only need to do the following if you've cloned from c4-bootstrap-php master, if you've checked out your own repo this isn't needed:
-
-**NOTE:** Swap MYREPO.git for the name supplied by Channel 4 Operations!
-
-```bash
-git push --mirror git@github.com:channel4/**MYREPO.git**
-git remote set-url origin git@github.com:channel4/**MYREPO.git**
-```
-
-Once you've made changes to the system and created new scripts withing the bootstrap environment simply run the repack script. This will pull in files from your system into **~/c4-bootstrap-php/files/....** and package up any special directories like **/var/www/public|private** into tar.gz files.
-
-```bash
-sudo ./repack.sh
-```
-
-**NOTE:** If you are making future changes to the same website on a new server make sure you bootstrap from your new repo thus avoiding having to set everything up again:
-
-```bash
-git clone git@github.com:channel4/**MYREPO.git**
-cd **MYREPO**
-sudo ./bootstrap.sh
-## Make your Changes
-sudo ./repack.sh
-```
-
-##Working Directories
-
-c4-bootstrap-php is set up to monitor changes you make to the following folders and helps you package up the system for delivery to channel4. If you're going to make any changes outside these directories please get in touch with the project manager and ask to set up a technical conference call.
-
-###/var/www/public/
-
-This is your web root so should be the location of everything you wish NGINX to server. PHP files will be processed by PHP5-FPM
-
-###/var/www/private/
-
-We recomend you use this location to store scripts that do not need to be public facing, for example this may be a script that is called by cron to pull data from another location before processing it and putting it into a database. If the general public do not need to hit these files through a browser put the files here.
-
-###/etc/cron.d/
-
-This is the default location for all your cron jobs.
-
-###/etc/nginx/
-
-Any tweaks to the NGINX settings are made here. There is also a example HTTPS config int he default file.
-
-###/etc/php5/
-
-You can tweak php.ini here, as this setup uses fpm please edit the file in **/etc/php5/fpm/**
-
-##Scripting
-If you wish to install new dependancies or preform extra actions on the server at boot time we recomend you build a script. For installing new dependancies using **apt-get** use **~/c4-bootstrap-php/scripts/pre.d/XX-mynewscript.sh** and then re-run **./bootstrap.sh** to install those dependancies. Doing this will ensure that when a clean system is built the dependancies get installed at bootstrap. If you wish to preform actions on files/folders or bounce a service after your environment is setup use the **~/c4-bootstrap-php/scripts/post.d/** folder.
-
-An example script to install new packages would be:
-
-```bash
-#!/bin/bash
-# example install deps script
-
-# always good to update the repo first
-apt-get update
-
-# now install the packages you need and use -y for non interactive install
-apt-get install -y vim vim-scripts
-
-```
-=======
-# c4-bootstrap
-
-This project is a lightweight framework for configuring, administrating and building servers consistently at the install level. It is designed for both the cloud and 'real' hardware. It is currently actively developed and maintained by channel4.com.
-
-## Concept
-
-c4-bootstrap is designed to aid repeatable deployment of physical and cloud servers. It uses the concept of "infrastructure as code", allowing the use of github to version control entire deployment strategies. 
-
-Building and deploying systems manually can be described abstracted to three main stages. These are namely; 
-i)   installing the base packages, 
-ii)  copying core files to the server, and 
-iii) tweaking the relevant configuration files. 
-
-### Core Components
-
-To replicate this we've developed a lightweight configuration package which consists of several components.
-
-i)   _scripts/pre.d_ which installs your base packages.
-
-ii)  A _files/_ directory which mimics the server root. (For ease of use you should consider _files/_ as a mirror image of your _/_ directory). It is copied onto the system after _pre.d_.
-
-iii) _scripts/post.d_ which is essentially the configuration stage; it is constituted of scripts which run after stages i. and ii, and configure the environment.
-
-### Additional Components
-
-Additional to the above, we provide _repack.sh_. This script enables changes made on the system to be pulled back into the git repo to store for a later date. 
-
-N.b. if extra packages are installed on the system via a package manager such as apt-get, the install scripts in _scripts/pre.d_ will need to be updated to reflect this so that all the requirements are present on system rebuild.
-
-### Sub Projects
-
-The main c4-bootstrap project is designed to be the core framework for other sub-projects to extend. The core scripts can be reused and tracked by forking this project. Additionally, we do accept pull requests for new features and bug fixes! If you have an interesting system build using c4-bootstrap please let us know and we'll list them on the Wiki.
-
-## System Requirements
-
-These scripts have only been tested on an Ubuntu based distro but should be easily altered to run elsewhere.
-=======
 You will need to install:
->>>>>>> 1b48bfb17d699ad61cf230cd2ddd96ae6c0e0a64
 
     git-core
 
@@ -158,103 +15,17 @@ To do so, run:
     apt-get update
     apt-get install git-core
 
-<<<<<<< HEAD
-The following toolkits are required, and should be standard on most Linux distro's:
-=======
 These standard toolkits should also be present on the system:
->>>>>>> 1b48bfb17d699ad61cf230cd2ddd96ae6c0e0a64
 
     bash
     tar
     gzip
 
-<<<<<<< HEAD
-## How To: c4-bootstrap
-
-i.    Fire up a fresh Ubuntu server or EC2 instance. ( see www.ubuntu.com for install and operational instructions )
-
-
-ii.   Fork this git repo and clone to the new server:
-
-      First click the fork button on the c4-bootstrap github page
-    
-      Then using your details amend the following:
-    
-      git clone https://github.com/*<USERNAME>*/c4-bootstrap.git
-      cd c4-bootstrap
-    
-    
-iii.  Now keep track of upstream script changes:
-
-      git remote add upstream git://github.com/channel4/c4-bootstrap.git
-      git fetch upstream
-
-
-iv.   Create custom bash scripts for software and system configuration, storing them in scripts/pre.d
-
-
-v.    Populate files/ with any files to be included on the system.
-
-
-vi.   Finally create any required post file expansion tasks in scripts/post.d
-
-
-vii.  If you now run ./bootstrap.sh; you should see your actions being carried out on the server.
-
-
-viii. Commit the above created changes back to the git repository.
-
-      git add *
-      git commit -a
-      git push origin master
-
-
-Now on a fresh server you can simply type:
-
-    git clone https://github.com/<USERNAME>/c4-bootstrap.git
-    ./bootstrap.sh
-
-This will replicate steps ii. - vii. for your new system.
-
-
-
-## How To: c4-repack
-
-repack.sh is designed to help you manage servers that are already bootstrapped. Preliminary to running repack.sh, edit  scripts/repack/00-suckfiles.sh and add any additional directories to the _working dirs()_ array. This allows the repack.sh script to copy these specified folders/files into the bootstrap files/ directory. 
-
-Now when you run repack.sh, these files will be automatically copied into the system and committed back to git.
-
-#### Environment checks
-
-On running the bootstrap.sh script, the system checks for current distro name and version. To change the version number, alter the following variable found at the top of the script:
-
-    supported_dist="Ubuntu"
-    supported_vers="10.04"
-
-To prevent the script from copying files to the root directory, change the following variable to 0:
-
-    prod=1 //change to 0;
-
-We currently track the LTS version of Ubuntu so the framework scripts will soon change to 12.04 but should continue to work on any version.
-
-
-## Stages in more detail.
-
-#### pre.d scripts (stage i)
-
-The pre.d scripts are the initial component. The framework will iterate through scripts/pre.d/XXXX and run each script in order. These scripts should be simple bash scripts performing initial tasks such as installing dependencies. An example script is provided. Script order processing is deduced from a prefix number, e.g. script 00-example will be run before 01-example.
-
-#### exploding files (stage ii)
-
-This part of the framework takes the contents of files/.... and copies them to /. This allows you to include files such as a custom motd or elements such as a sites-enabled config for nginx or apache. 
-
-To re-route copying of files to /tmp/c4-bootstrap instead of the / directory, change variable prod in bootstrap.sh to 0.
-=======
 ## How To: Bootstrap
 
 Bootstrapping your server will install the requested environment on your system.
 
-Fire up your Ubuntu server or Ubuntu AMI EC2 instance. These scripts are designed to work on Ubuntu 10.04 LTS. Please see c4-bootstrap documentation for further information on compatibility and the deployment framework in general.
+Fire up your Ubuntu server or Ubuntu AMI EC2 instance. These scripts are designed to work on Ubuntu 12.04 LTS. Please see c4-bootstrap documentation for further information on compatibility and the deployment framework in general.
 
 To get started, fork this git repo and clone it onto the fresh server:
 
@@ -271,76 +42,28 @@ On the server CLI:
     sudo ./bootstrap.sh
 
 There should be considerable output on screen. Once the script has finished, the system should be fully up and running.
->>>>>>> 1b48bfb17d699ad61cf230cd2ddd96ae6c0e0a64
 
 If you have never run repack.sh before (see c4-bootstap documentation), when you browse to your URL/IP you will see a 403 access denied error browser side. 
 
-<<<<<<< HEAD
-#### post.d (stage iii)
-
-The final part of the framework is post.d. This is approached in the same manner as pre.d, iterating through scripts/post.d/XXXX, using number pre-fixes to determine order. Scripts located in post.d should run commands that can only be done once the software is installed and files are shifted to the correct location. 
-
-An example of this would be _*a2ensite mysite.conf*_.
-
-### repack.sh
-
-repack.sh allows you to commit local system changes back to a git repo in order to repeat/capture changes for future deployments.
-
-#### Environment checks
-
-When running the repack.sh script the system checks for the distro name and version. As mentioned above, the version number can be tweaked at the top of the file by altering the following variable:
-=======
 If you have been using repack.sh to track your changes in github then your site will be fully restored and running when you browse to your URL/IP.
 
 ## How To: Repack (repack.sh)
 
 While developing your site the contents of the site may change frequently. repack.sh is designed to help track these changes in github. This will allow a rebuild of the server to a given point in time. It is good practice to use repack.sh regularly to avoid loss of work, especially if you frequently add content to your site.
->>>>>>> 1b48bfb17d699ad61cf230cd2ddd96ae6c0e0a64
 
 Simply run these commands (remember to reflect the repository name if changed from default):
 
-<<<<<<< HEAD
-This ensures that you are packaging for the same version as bootstrap.sh
-
-
-#### Repack scripts
-
-The repack scripts reside in:
-
-    scripts/repack. 
-
-Care should be taken when editing existing scripts or adding files to this directory.
-
-##### 00-suckfiles.sh
-
-By default __00-suckfiles.sh__ does not back anything up. 
-
-To back up specified folders; create a file called __scripts/repack/working_dirs__ and list on separate lines which directories you wish to back up; e.g.
-=======
     cd c4-bootstrap-nginx-php
     sudo ./repack.sh
 
 This will create a SiteContent.tgz of your site and push it back to your github repo. It can be used to back up the site or re-deploy it to a new server using the bootstrap.sh script. 
 
 c4-bootstrap-nginx-php is set up to monitor the following directories:
->>>>>>> 1b48bfb17d699ad61cf230cd2ddd96ae6c0e0a64
 
     /etc/nginx/
     /etc/php5/
     /var/www/
 
-<<<<<<< HEAD
-All these files will then be pulled into your github __files__.
-
-The only folder treated differently is __/var/www/__. Because this generally has a large number of files, we create a tar.gz of this, which is expanded at boot strap time.
-
-### Files
-
-The file structure of the system is kept within files, this should be a mirror of your root / directory.
-For example, after bootstrap.sh is run, files/etc/nginx/nginx.conf will map to /etc/nginx/nginx.conf.
-
->>>>>>> c272183dbff9fcf325f9e51f49c82364c03ca065
-=======
 Changes in these directories will be pulled back into your git repo when running repack. To add more locations just edit the __scripts/repack/working_dirs__ file.
 
 NB : A private github repo should be used to avoid exposing your code and configs to everyone!
@@ -350,4 +73,3 @@ NB : A private github repo should be used to avoid exposing your code and config
 For more info on the c4-bootstrap project; please refer to:
 
 [https://github.com/channel4/c4-bootstrap/blob/master/README.md](https://github.com/channel4/c4-bootstrap/blob/master/README.md "c4-bootstrap README")
->>>>>>> 1b48bfb17d699ad61cf230cd2ddd96ae6c0e0a64
