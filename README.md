@@ -21,7 +21,7 @@ These standard toolkits should also be present on the system:
     tar
     gzip
 
-## How To: Bootstrap
+## How To: Bootstrap (bootstrap.sh)
 
 Bootstrapping your server will install the requested environment on your system.
 
@@ -66,7 +66,7 @@ c4-bootstrap-nginx-php is set up to monitor the following directories:
 
 Changes in these directories will be pulled back into your git repo when running repack. To add more locations just edit the __scripts/repack/working_dirs__ file.
 
-NB : A private github repo should be used to avoid exposing your code and configs to everyone!
+####NB : A private github repo should be used to avoid exposing your code and configs to everyone!
 
 ## More info
 
