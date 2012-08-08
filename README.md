@@ -27,9 +27,21 @@ Bootstrapping your server will install the requested environment on your system.
 
 Fire up your Ubuntu server or Ubuntu AMI EC2 instance. These scripts are designed to work on Ubuntu 12.04 LTS. Please see c4-bootstrap documentation for further information on compatibility and the deployment framework in general.
 
-To get started, fork this git repo and clone it onto the fresh server:
+To get started, duplicate this git repo and clone it onto the fresh server:
 
-    First click the fork button on the this github page
+    First duplicate the repo:
+    
+    git clone --bare https://github.com/channel4/c4-bootstrap.git
+    # Make a bare clone of the repo
+
+    cd c4-bootstrap
+    git push --mirror https://github.com/*<USERNAME>*/new-repo.git
+    # Mirror-push to the new repo
+
+    cd ..
+    rm -rf c4-bootstrap
+    # Remove our temporary local repo
+    
     // You'll need a github account to do this
     // We recommend you have a paid account to keep your code private.
     
